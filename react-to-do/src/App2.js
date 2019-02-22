@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     handleClick(e){
-      alert(this.handleClick.message);
+      console.log("howdy");
     }
 
     handleSubmit(e) {
@@ -39,7 +39,10 @@ class App extends Component {
     }
 
     toggleDelete(index) {
-      console.log(index)
+      const todos = this.state.todos.filter();
+      const todo = todos[index];
+      todo.isDeleted = todo.isDeleted ? "false" : "true";
+      this.setState({ todos: todos});
     }
 
     render() {
@@ -47,17 +50,14 @@ class App extends Component {
         <div className="App">
         <ul>
         { this.state.todos.map( (todo, index,) =>
-          <ToDo key={ index }
-          description={ todo.description }
-          isDeleted={todo.isDeleted}
-          toggleDelete={ () => this.toggleDelete(index) }
-          isCompleted={todo.isCompleted }
-          toggleComplete={ () => this.toggleComplete(index) }/>
-
+          <ToDo key={ index } description={ todo.description } isDeleted={todo.isDeleted}  toggleDelete={ () => this.toggleDelete(index) } isCompleted={todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) }
+          {<input type="button" value={this.handleClick} onClick={ (e)=>
+          this.handleClick(e)}/>
       )}
         </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
         <input type="text" value={ this.state.newTodoDescription } onChange={ (e)=> this.handleChange(e)}/>
+
         <input type="submit" />
         </form>
             <div><button onClick={this.handleClick}>HiButton</button></div>
