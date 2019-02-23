@@ -39,8 +39,11 @@ class App extends Component {
     }
 
     toggleDelete(index) {
-      console.log(index)
-    }
+        const todos = this.state.todos.filter();
+        const todo = todos[index];
+        todo.isDeleted = todo.isDeleted ? "false" : "true";
+        this.setState({ todos: todos});
+        }
 
     render() {
       return (
