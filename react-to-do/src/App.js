@@ -38,9 +38,14 @@ class App extends Component {
       this.setState({ todos: todos });
     }
 
-    toggleDelete(index) {
-      console.log(index)
-    }
+  toggleDelete(index) {
+           const todo = todos[index];
+           todo.isDeleted = todo.isDeleted ? "false" : "true";
+           const newTodos = todos.filter((todo, todoIndex) => {
+                    return index !== todoIndex
+           })
+           this.setState({ todos:  newTodos} );
+           }
 
     render() {
       return (
